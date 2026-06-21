@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover, theme-color=#0a0a0f">
+  <title>Clozzy Support • Help Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #121118;
+      --bg-card: #18161f;
+      --surface: rgba(22, 20, 30, 0.9);
+      --white: #ffffff;
+      --pink: #ff3860;
+      --pink-light: #ff6b8b;
+      --pink-glow: rgba(255, 56, 96, 0.4);
+      --blue: #4d7cff;
+      --blue-light: #7b9fff;
+      --blue-glow: rgba(77, 124, 255, 0.4);
+      --text-primary: #f5f3f7;
+      --text-secondary: #b0aab5;
+      --text-muted: #6e6872;
+      --border-subtle: rgba(255, 255, 255, 0.06);
+      --border-pink: rgba(255, 56, 96, 0.25);
+      --border-blue: rgba(77, 124, 255, 0.25);
+      --radius-xl: 2rem;
+      --radius-lg: 1.5rem;
+      --radius-md: 1.2rem;
+      --radius-sm: 0.8rem;
+      --shadow-card: 0 20px 40px rgba(0, 0, 0, 0.5);
+      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg-primary);
+      min-height: 100vh;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      position: relative;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Animated gradient orbs */
+    .bg-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.12;
+      pointer-events: none;
+      z-index: 0;
+      animation: floatOrb 20s infinite ease-in-out;
+    }
+    .bg-orb.pink-orb {
+      width: 320px;
+      height: 320px;
+      background: var(--pink);
+      top: -80px;
+      right: -80px;
+    }
+    .bg-orb.blue-orb {
+      width: 280px;
+      height: 280px;
+      background: var(--blue);
+      bottom: -60px;
+      left: -60px;
+      animation-delay: -10s;
+    }
+    @keyframes floatOrb {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -30px) scale(1.1); }
+      66% { transform: translate(-20px, 20px) scale(0.9); }
+    }
+
+    /* Main Container */
+    .support-wrapper {
+      width: 100%;
+      max-width: 1000px;
+      background: var(--surface);
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+      border-radius: var(--radius-xl);
+      padding: 2rem 1.8rem;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 0 1px var(--border-subtle), 0 0 80px rgba(255, 56, 96, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+    .brand-icon {
+      width: 3.2rem;
+      height: 3.2rem;
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .brand-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 1rem;
+    }
+    .brand-icon .fa-heart {
+      background: linear-gradient(135deg, var(--pink), #ff1a4a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-size: 2rem;
+    }
+    .brand-name {
+      font-weight: 800;
+      font-size: 1.8rem;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, var(--white), #ffccda, var(--blue-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .status-pill {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 3rem;
+      padding: 0.5rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid var(--border-pink);
+      font-weight: 500;
+      font-size: 0.8rem;
+      color: #ffccda;
+    }
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      background: #3fe8a0;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #3fe8a0;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.5); }
+    }
+
+    /* Search */
+    .search-container {
+      position: relative;
+    }
+    .search-input {
+      width: 100%;
+      background: rgba(18, 16, 22, 0.8);
+      border: 1px solid var(--border-pink);
+      border-radius: 3rem;
+      padding: 0.9rem 1.4rem 0.9rem 3rem;
+      font-size: 0.9rem;
+      color: var(--white);
+      outline: none;
+      backdrop-filter: blur(15px);
+      transition: var(--transition);
+      font-weight: 500;
+    }
+    .search-input::placeholder {
+      color: var(--text-muted);
+    }
+    .search-input:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 20px var(--blue-glow), 0 0 5px var(--pink-glow);
+    }
+    .search-icon {
+      position: absolute;
+      left: 1.2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--pink-light);
+      font-size: 0.9rem;
+      pointer-events: none;
+    }
+
+    /* Feature Tabs - Horizontally scrollable on mobile */
+    .features-scroll {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 0.5rem;
+      padding-bottom: 0.3rem;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      -webkit-overflow-scrolling: touch;
+      mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%);
+    }
+    .features-scroll::-webkit-scrollbar {
+      display: none;
+    }
+    .feature-pill {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(8px);
+      padding: 0.55rem 1.1rem;
+      border-radius: 2.5rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      border: 1px solid var(--border-pink);
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      white-space: nowrap;
+      flex-shrink: 0;
+      user-select: none;
+    }
+    .feature-pill i {
+      color: var(--pink-light);
+      font-size: 0.75rem;
+    }
+    .feature-pill:active {
+      transform: scale(0.95);
+    }
+    .feature-pill.active {
+      background: linear-gradient(135deg, var(--pink), #d10034);
+      color: var(--white);
+      border-color: transparent;
+      box-shadow: 0 6px 20px var(--pink-glow);
+    }
+    .feature-pill.active i {
+      color: var(--white);
+    }
+
+    /* Articles Grid */
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+    .help-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(15px);
+      border-radius: var(--radius-lg);
+      padding: 1.3rem 1.1rem;
+      border: 1px solid var(--border-subtle);
+      transition: var(--transition);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .help-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--pink), var(--blue));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .help-card:active {
+      transform: scale(0.97);
+    }
+    .help-card:hover::before,
+    .help-card:active::before {
+      opacity: 1;
+    }
+    .help-card:hover {
+      border-color: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 20px var(--pink-glow);
+    }
+    .card-icon-wrap {
+      width: 2.8rem;
+      height: 2.8rem;
+      border-radius: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      background: rgba(255, 56, 96, 0.1);
+      border: 1px solid rgba(255, 56, 96, 0.2);
+    }
+    .card-icon-wrap i {
+      background: linear-gradient(135deg, var(--pink-light), var(--blue-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .card-icon-wrap img {
+      width: 60%;
+      height: 60%;
+      object-fit: contain;
+    }
+    .card-title {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--white);
+      line-height: 1.3;
+    }
+    .card-desc {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+    .card-tags {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin-top: auto;
+    }
+    .card-tag {
+      font-size: 0.65rem;
+      background: rgba(77, 124, 255, 0.12);
+      padding: 0.2rem 0.7rem;
+      border-radius: 1rem;
+      color: var(--blue-light);
+      font-weight: 600;
+      border: 1px solid rgba(77, 124, 255, 0.2);
+    }
+
+    .no-results {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Bottom Action Bar */
+    .action-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: var(--radius-lg);
+      padding: 1rem 1.4rem;
+      border: 1px solid var(--border-subtle);
+    }
+    .help-text {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+    }
+    .help-text i {
+      color: var(--pink-light);
+    }
+    .btn-support {
+      background: linear-gradient(135deg, var(--pink), #c70030);
+      border: none;
+      padding: 0.75rem 1.8rem;
+      border-radius: 2.5rem;
+      font-weight: 700;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      box-shadow: 0 8px 25px var(--pink-glow);
+      transition: var(--transition);
+      font-size: 0.85rem;
+      letter-spacing: 0.2px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .btn-support:active {
+      transform: scale(0.95);
+      box-shadow: 0 4px 15px var(--pink-glow);
+    }
+
+    /* ============ MODALS ============ */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s;
+      padding: 1.2rem;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .modal-dialog {
+      background: var(--bg-secondary);
+      border-radius: var(--radius-xl);
+      padding: 1.8rem 1.5rem;
+      width: 100%;
+      max-width: 450px;
+      box-shadow: 0 40px 60px rgba(0, 0, 0, 0.9), 0 0 0 1px var(--border-pink);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transform: translateY(20px) scale(0.97);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-overlay.active .modal-dialog {
+      transform: translateY(0) scale(1);
+    }
+    .modal-close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-secondary);
+      width: 2.2rem;
+      height: 2.2rem;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      z-index: 2;
+    }
+    .modal-close-btn:hover {
+      background: rgba(255, 56, 96, 0.2);
+      color: var(--white);
+    }
+    .modal-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      background: linear-gradient(135deg, var(--white), #ffccda, var(--blue-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      padding-right: 2rem;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.3px;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      background: rgba(18, 16, 22, 0.8);
+      border: 1px solid var(--border-pink);
+      border-radius: var(--radius-sm);
+      padding: 0.8rem 1rem;
+      color: var(--white);
+      font-family: inherit;
+      font-size: 0.9rem;
+      outline: none;
+      transition: var(--transition);
+      resize: vertical;
+    }
+    .form-group textarea {
+      min-height: 110px;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 15px var(--blue-glow);
+    }
+    .form-submit-btn {
+      width: 100%;
+      background: linear-gradient(135deg, var(--blue), #3055d0);
+      border: none;
+      padding: 0.85rem;
+      border-radius: 2rem;
+      font-weight: 700;
+      color: var(--white);
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 0.9rem;
+      box-shadow: 0 8px 20px var(--blue-glow);
+      margin-top: 0.5rem;
+    }
+    .form-submit-btn:active {
+      transform: scale(0.96);
+    }
+    .form-submit-btn:disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    .success-message {
+      display: none;
+      text-align: center;
+      padding: 1.5rem 0.5rem;
+    }
+    .success-message i {
+      font-size: 2.5rem;
+      color: #3fe8a0;
+      margin-bottom: 0.5rem;
+    }
+    .success-message p {
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    /* Article detail in modal */
+    .article-detail-text {
+      color: var(--text-secondary);
+      line-height: 1.7;
+      font-size: 0.9rem;
+    }
+    .article-detail-text strong {
+      color: var(--white);
+      font-size: 1rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .support-wrapper {
+        padding: 1.5rem 1.2rem;
+        border-radius: var(--radius-lg);
+        gap: 1.4rem;
+      }
+      .articles-grid {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+      }
+      .brand-name {
+        font-size: 1.5rem;
+      }
+      .brand-icon {
+        width: 2.8rem;
+        height: 2.8rem;
+      }
+      .help-card {
+        padding: 1.1rem 1rem;
+      }
+      .feature-pill {
+        padding: 0.5rem 1rem;
+        font-size: 0.72rem;
+      }
+    }
+
+    @media (max-width: 400px) {
+      body {
+        padding: 0.5rem;
+      }
+      .support-wrapper {
+        padding: 1.2rem 0.9rem;
+        border-radius: 1.5rem;
+      }
+      .header {
+        gap: 0.5rem;
+      }
+      .action-bar {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+      }
+      .btn-support {
+        justify-content: center;
+      }
+      .modal-dialog {
+        padding: 1.4rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Orbs -->
+  <div class="bg-orb pink-orb"></div>
+  <div class="bg-orb blue-orb"></div>
+
+  <!-- Main Support Container -->
+  <div class="support-wrapper">
+    <!-- Header -->
+    <div class="header">
+      <div class="brand">
+        <div class="brand-icon">
+          <!-- Use local asset icon from /assets folder -->
+          <img src="assets/clozzy-icon.png" alt="Clozzy" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-heart\'></i>';">
+          <i class="fas fa-heart" style="display:none;"></i>
+        </div>
+        <span class="brand-name">Clozzy</span>
+      </div>
+      <div class="status-pill">
+        <span class="live-dot"></span> We're online
+      </div>
+    </div>
+
+    <!-- Search -->
+    <div class="search-container">
+      <i class="fas fa-search search-icon"></i>
+      <input type="text" class="search-input" id="searchInput" placeholder='Search issues... "daily selfie", "login loop", "chat"' autocomplete="off">
+    </div>
+
+    <!-- Feature Category Pills -->
+    <div class="features-scroll" id="featureScroll">
+      <div class="feature-pill active" data-feature="all"><i class="fas fa-th-large"></i> All</div>
+      <div class="feature-pill" data-feature="daily-selfie"><i class="fas fa-camera-retro"></i> Daily Selfie</div>
+      <div class="feature-pill" data-feature="chat"><i class="fas fa-comment-dots"></i> Chat</div>
+      <div class="feature-pill" data-feature="gallery"><i class="fas fa-images"></i> Gallery</div>
+      <div class="feature-pill" data-feature="timeline"><i class="fas fa-stream"></i> Timeline</div>
+      <div class="feature-pill" data-feature="stats"><i class="fas fa-chart-pie"></i> Stats</div>
+      <div class="feature-pill" data-feature="theme"><i class="fas fa-palette"></i> Theme</div>
+      <div class="feature-pill" data-feature="note"><i class="fas fa-sticky-note"></i> Note</div>
+      <div class="feature-pill" data-feature="mood"><i class="fas fa-smile"></i> Mood</div>
+      <div class="feature-pill" data-feature="quick-action"><i class="fas fa-bolt"></i> Quick Actions</div>
+      <div class="feature-pill" data-feature="signup-login"><i class="fas fa-key"></i> Sign Up/Login</div>
+    </div>
+
+    <!-- Articles Grid -->
+    <div class="articles-grid" id="articlesGrid">
+      <div class="no-results">✨ Loading help articles...</div>
+    </div>
+
+    <!-- Bottom Action -->
+    <div class="action-bar">
+      <div class="help-text">
+        <i class="fas fa-question-circle"></i> Can't find your answer?
+      </div>
+      <button class="btn-support" id="openTicketModalBtn">
+        <i class="fas fa-paper-plane"></i> New Support Request
+      </button>
+    </div>
+  </div>
+
+  <!-- TICKET MODAL -->
+  <div class="modal-overlay" id="ticketModal">
+    <div class="modal-dialog">
+      <button class="modal-close-btn" id="closeTicketModal"><i class="fas fa-times"></i></button>
+      <div class="modal-title">📩 Submit a Request</div>
+      <div id="ticketFormContainer">
+        <div class="form-group">
+          <label><i class="fas fa-envelope"></i> Your Account Email</label>
+          <input type="email" id="ticketEmail" placeholder="you@example.com" required autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-comment-alt"></i> Describe Your Issue</label>
+          <textarea id="ticketMessage" placeholder="Tell us what's happening... (e.g., Daily selfie not sending, login loop)"></textarea>
+        </div>
+        <button class="form-submit-btn" id="submitTicketBtn">
+          <i class="fas fa-paper-plane"></i> Send Request
+        </button>
+      </div>
+      <div class="success-message" id="ticketSuccessMsg">
+        <i class="fas fa-check-circle"></i>
+        <p>Request sent successfully!<br>We'll check your account and reply soon.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARTICLE DETAIL MODAL -->
+  <div class="modal-overlay" id="articleModal">
+    <div class="modal-dialog">
+      <button class="modal-close-btn" id="closeArticleModal"><i class="fas fa-times"></i></button>
+      <div class="modal-title" id="articleModalTitle">Article Detail</div>
+      <div class="article-detail-text" id="articleModalContent"></div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getFirestore, collection, getDocs, addDoc, serverTimestamp, query, orderBy } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+    // Firebase Config
+    const firebaseConfig = {
+      apiKey: "AIzaSyDboAkuycuusLIxaKPuxKA7vUhLRc-Zwm8",
+      authDomain: "clozzy-early-access.firebaseapp.com",
+      projectId: "clozzy-early-access",
+      storageBucket: "clozzy-early-access.firebasestorage.app",
+      messagingSenderId: "60518810918",
+      appId: "1:60518810918:web:9aa4a937b08427a65cede7"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // Comprehensive default articles
+    const defaultArticles = [
+      { id:'1', title:'Daily Selfie Not Sending', description:'Check notification permissions and ensure both partners have latest version.', category:'daily-selfie', icon:'fa-camera-retro', tag:'selfie', detail:'Go to phone Settings > Clozzy > Notifications > Allow. Also verify your partner hasn\'t paused selfie reminders in couple settings.' },
+      { id:'2', title:'Selfie Streak Disappeared', description:'Streaks reset after 24h window. Timezone mismatch can cause early reset.', category:'daily-selfie', icon:'fa-fire', tag:'streak', detail:'Both partners should set device time to "Automatic". If streak lost unfairly, send a support request with your account email.' },
+      { id:'3', title:'Chat Messages Not Delivering', description:'Toggle airplane mode or restart app. Check internet connection.', category:'chat', icon:'fa-comment-slash', tag:'delivery', detail:'Long-press a stuck message and tap "Retry". Ensure both partners have stable internet.' },
+      { id:'4', title:'Message Reactions Missing', description:'Update app to v2.4+. Both partners need latest version.', category:'chat', icon:'fa-smile-wink', tag:'reactions', detail:'Clear app cache in Settings > Storage > Clear Cache if reactions still not showing.' },
+      { id:'5', title:'Gallery Photos Not Loading', description:'Check couple space sharing permissions in settings.', category:'gallery', icon:'fa-images', tag:'photos', detail:'Go to Profile > Couple Settings > Shared Gallery > Toggle ON. Also check storage permission.' },
+      { id:'6', title:'Timeline Entries Out of Order', description:'Pull down to refresh. Date filter may be active.', category:'timeline', icon:'fa-stream', tag:'order', detail:'Tap the calendar icon on timeline to reset any active filters.' },
+      { id:'7', title:'Stats Dashboard Not Updating', description:'Stats refresh hourly. Force sync in profile settings.', category:'stats', icon:'fa-chart-bar', tag:'sync', detail:'Profile > Stats > Pull down to force refresh. Data updates every 60 minutes.' },
+      { id:'8', title:'Theme Won\'t Apply to Partner', description:'Premium couple themes require both to have Clozzy Plus.', category:'theme', icon:'fa-palette', tag:'premium', detail:'Free themes apply instantly. For synced couple themes, both partners need active subscription.' },
+      { id:'9', title:'Note Not Syncing', description:'Toggle internet off/on. Notes auto-save locally first.', category:'note', icon:'fa-sticky-note', tag:'sync', detail:'Enable cloud backup in Note Settings. Notes sync when both partners are online.' },
+      { id:'10', title:'Mood Status Stuck', description:'Swipe the mood card or restart the app.', category:'mood', icon:'fa-smile', tag:'status', detail:'Mood updates every 6 hours. Tap "Update Now" in mood settings for immediate change.' },
+      { id:'11', title:'Quick Action Button Missing', description:'Customize in Settings > Quick Actions. Max 4 shortcuts.', category:'quick-action', icon:'fa-bolt', tag:'shortcut', detail:'Drag to reorder. If missing, reset quick actions in settings.' },
+      { id:'12', title:'Can\'t Sign Up with Email', description:'Check spam folder. Use password with 8+ characters.', category:'signup-login', icon:'fa-envelope', tag:'email', detail:'Tap "Resend" on verification screen. Add no-reply@clozzy.app to contacts.' },
+      { id:'13', title:'Login Loop / Constant Logout', description:'Clear app data or reinstall. Set date/time to automatic.', category:'signup-login', icon:'fa-sync-alt', tag:'loop', detail:'Android: Settings > Apps > Clozzy > Storage > Clear Data. iOS: Delete and reinstall app.' },
+      { id:'14', title:'Partner Invite Link Expired', description:'Links expire after 48 hours. Request new invite.', category:'signup-login', icon:'fa-link', tag:'invite', detail:'Ask your partner to send a fresh invite from couple settings.' },
+      { id:'15', title:'Forgot Password Reset', description:'Use "Forgot Password" on login screen.', category:'signup-login', icon:'fa-unlock-alt', tag:'password', detail:'Reset link valid for 1 hour. Check both email and SMS.' },
+      { id:'16', title:'2FA Code Not Working', description:'Ensure device time is automatic. Use backup codes.', category:'signup-login', icon:'fa-shield-alt', tag:'2fa', detail:'Backup codes in Settings > Security. Request new codes if all used.' },
+    ];
+
+    let articles = [...defaultArticles];
+    let activeFeature = 'all';
+    let searchTerm = '';
+
+    // DOM Elements
+    const articlesGrid = document.getElementById('articlesGrid');
+    const featurePills = document.querySelectorAll('.feature-pill');
+    const searchInput = document.getElementById('searchInput');
+    const openTicketBtn = document.getElementById('openTicketModalBtn');
+    const ticketModal = document.getElementById('ticketModal');
+    const closeTicketBtn = document.getElementById('closeTicketModal');
+    const submitTicketBtn = document.getElementById('submitTicketBtn');
+    const ticketEmail = document.getElementById('ticketEmail');
+    const ticketMessage = document.getElementById('ticketMessage');
+    const ticketFormContainer = document.getElementById('ticketFormContainer');
+    const ticketSuccessMsg = document.getElementById('ticketSuccessMsg');
+    const articleModal = document.getElementById('articleModal');
+    const closeArticleBtn = document.getElementById('closeArticleModal');
+    const articleModalTitle = document.getElementById('articleModalTitle');
+    const articleModalContent = document.getElementById('articleModalContent');
+
+    // Load from Firestore
+    async function loadArticles() {
+      try {
+        const q = query(collection(db, "helpArticles"), orderBy("createdAt", "desc"));
+        const snap = await getDocs(q);
+        if (!snap.empty) {
+          const fireArts = [];
+          snap.forEach(doc => fireArts.push({ id: doc.id, ...doc.data() }));
+          articles = fireArts;
+        }
+      } catch (e) {
+        console.log("Using built-in articles (Firestore fallback)");
+      }
+      renderArticles();
+    }
+
+    function renderArticles() {
+      let filtered = articles.filter(a => {
+        const matchFeature = activeFeature === 'all' || a.category === activeFeature;
+        const term = searchTerm.toLowerCase().trim();
+        const matchSearch = !term || 
+          (a.title?.toLowerCase().includes(term)) ||
+          (a.description?.toLowerCase().includes(term)) ||
+          (a.tag?.toLowerCase().includes(term));
+        return matchFeature && matchSearch;
+      });
+
+      if (!filtered.length) {
+        articlesGrid.innerHTML = `<div class="no-results"><i class="far fa-frown-open"></i> No articles found. Try a different search or category.</div>`;
+        return;
+      }
+
+      articlesGrid.innerHTML = filtered.map(a => `
+        <div class="help-card" data-id="${a.id}">
+          <div class="card-icon-wrap">
+            <i class="fas ${a.icon || 'fa-file-alt'}"></i>
+          </div>
+          <div class="card-title">${escapeHtml(a.title)}</div>
+          <div class="card-desc">${escapeHtml(a.description || '')}</div>
+          <div class="card-tags">
+            <span class="card-tag">${escapeHtml(a.tag || a.category || 'help')}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function escapeHtml(t) { 
+      return String(t||'').replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[m]); 
+    }
+
+    // Feature pill clicks
+    featurePills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        featurePills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        activeFeature = pill.dataset.feature;
+        renderArticles();
+        // Scroll pill into view on mobile
+        pill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      });
+    });
+
+    // Search
+    searchInput.addEventListener('input', e => {
+      searchTerm = e.target.value;
+      renderArticles();
+    });
+
+    // Article card click -> detail modal
+    articlesGrid.addEventListener('click', e => {
+      const card = e.target.closest('.help-card');
+      if (!card) return;
+      const art = articles.find(a => a.id === card.dataset.id);
+      if (art) {
+        articleModalTitle.textContent = art.title || 'Help Article';
+        articleModalContent.innerHTML = `
+          <p style="margin-bottom:1rem;">${escapeHtml(art.description || '')}</p>
+          <p style="color:#b0aab5; background:rgba(255,255,255,0.02); padding:1rem; border-radius:1rem; border-left:3px solid var(--pink);">
+            <strong style="display:block; margin-bottom:0.4rem;">🔍 Detailed Solution:</strong>
+            ${escapeHtml(art.detail || 'For personalized help, submit a support request with your account email.')}
+          </p>
+        `;
+        articleModal.classList.add('active');
+      }
+    });
+
+    // Article modal close
+    closeArticleBtn.addEventListener('click', () => articleModal.classList.remove('active'));
+    articleModal.addEventListener('click', e => { if (e.target === articleModal) articleModal.classList.remove('active'); });
+
+    // Ticket Modal
+    openTicketBtn.addEventListener('click', () => {
+      resetTicketForm();
+      ticketModal.classList.add('active');
+    });
+    closeTicketBtn.addEventListener('click', () => ticketModal.classList.remove('active'));
+    ticketModal.addEventListener('click', e => { if (e.target === ticketModal) ticketModal.classList.remove('active'); });
+
+    function resetTicketForm() {
+      ticketFormContainer.style.display = 'block';
+      ticketSuccessMsg.style.display = 'none';
+      ticketEmail.value = '';
+      ticketMessage.value = '';
+      submitTicketBtn.disabled = false;
+      submitTicketBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Request';
+    }
+
+    // Submit ticket with email
+    submitTicketBtn.addEventListener('click', async () => {
+      const email = ticketEmail.value.trim();
+      const message = ticketMessage.value.trim();
+
+      if (!email || !message) {
+        if (!email) ticketEmail.style.borderColor = '#ff3860';
+        if (!message) ticketMessage.style.borderColor = '#ff3860';
+        return;
+      }
+
+      // Reset borders
+      ticketEmail.style.borderColor = 'rgba(255,56,96,0.25)';
+      ticketMessage.style.borderColor = 'rgba(255,56,96,0.25)';
+
+      submitTicketBtn.disabled = true;
+      submitTicketBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
+      try {
+        await addDoc(collection(db, "supportTickets"), {
+          email: email,
+          message: message,
+          createdAt: serverTimestamp(),
+          status: 'open',
+          app: 'Clozzy',
+          source: 'support_webpage'
+        });
+
+        // Show success
+        ticketFormContainer.style.display = 'none';
+        ticketSuccessMsg.style.display = 'block';
+
+        setTimeout(() => {
+          ticketModal.classList.remove('active');
+          resetTicketForm();
+        }, 2500);
+
+      } catch (error) {
+        console.error('Ticket submission error:', error);
+        alert('Failed to send request. Please try again or email help@clozzy.app');
+        submitTicketBtn.disabled = false;
+        submitTicketBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Request';
+      }
+    });
+
+    // Clear input error styling on focus
+    ticketEmail.addEventListener('focus', () => ticketEmail.style.borderColor = 'rgba(77,124,255,0.5)');
+    ticketMessage.addEventListener('focus', () => ticketMessage.style.borderColor = 'rgba(77,124,255,0.5)');
+
+    // Escape key closes modals
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        ticketModal.classList.remove('active');
+        articleModal.classList.remove('active');
+      }
+    });
+
+    // Initial load
+    loadArticles();
+  </script>
+</body>
+</html>
